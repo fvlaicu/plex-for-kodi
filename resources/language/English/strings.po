@@ -1034,3 +1034,15 @@ msgstr ""
 msgctxt "#32493"
 msgid "Prefer normal over forced subtitles if available (PMS selects forced by default)"
 msgstr ""
+
+msgctxt "#32494"
+msgid "Show intro skip button from the beginning of the video (PlexPass)"
+msgstr ""
+
+msgctxt "#32500"
+msgid "Always show post-play screen (even for short videos)"
+msgstr ""
+
+msgctxt "#32501"
+msgid "Time-to-wait between videos on post-play"
+msgstr ""
