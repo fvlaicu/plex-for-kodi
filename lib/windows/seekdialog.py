@@ -118,7 +118,7 @@ class SeekDialog(kodigui.BaseDialog):
         self._atSkipStep = -1
         self._lastSkipDirection = None
         self._forcedLastSkipAmount = None
-        self._enableIntroSkip = plexapp.ACCOUNT.adminHasPlexPass
+        self._enableIntroSkip = plexapp.ACCOUNT.hasPlexPass()
         self.intro = self.handler.player.video.intro
         self.showIntroSkipEarly = util.advancedSettings.introSkipEarly
         self.skipSteps = self.SKIP_STEPS
@@ -238,7 +238,7 @@ class SeekDialog(kodigui.BaseDialog):
                     self.shouldShowIntroSkip()
                     return
                 elif action == xbmcgui.ACTION_MOVE_DOWN:
-                    self.setProperty('show.introSkipCond', '1')
+                    self.setProperty('show.introSkip_OSDOnly', '1')
                     self.showOSD()
                 elif action in (xbmcgui.ACTION_MOVE_RIGHT, xbmcgui.ACTION_STEP_FORWARD, xbmcgui.ACTION_MOVE_LEFT,
                                 xbmcgui.ACTION_STEP_BACK):
@@ -783,6 +783,7 @@ class SeekDialog(kodigui.BaseDialog):
                 self.setProperty('show.introSkip', '1')
                 return True
             self.setProperty('show.introSkip', '')
+            return False
 
     def setup(self, duration, offset=0, bif_url=None, title='', title2=''):
         self.title = title
@@ -917,7 +918,7 @@ class SeekDialog(kodigui.BaseDialog):
 
         intro = self.shouldShowIntroSkip()
         if intro and not self.osdVisible() and self.lastFocusID != self.SKIP_INTRO_BUTTON_ID and \
-                not self.getProperty('show.introSkipCond'):
+                not self.getProperty('show.introSkip_OSDOnly'):
             self.setFocusId(self.SKIP_INTRO_BUTTON_ID)
 
         if offset or (self.autoSeekTimeout and time.time() >= self.autoSeekTimeout and
@@ -949,7 +950,7 @@ class SeekDialog(kodigui.BaseDialog):
     def hideOSD(self):
         self.setProperty('show.OSD', '')
         self.setFocusId(self.NO_OSD_BUTTON_ID)
-        if self.shouldShowIntroSkip() and not self.getProperty('show.introSkipCond'):
+        if self.shouldShowIntroSkip() and not self.getProperty('show.introSkip_OSDOnly'):
             self.setFocusId(self.SKIP_INTRO_BUTTON_ID)
 
         self.resetSeeking()

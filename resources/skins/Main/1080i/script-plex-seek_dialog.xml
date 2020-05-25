@@ -203,7 +203,7 @@
                 <textoffsetx>70</textoffsetx>
                 <textcolor>FF000000</textcolor>
                 <focusedcolor>FF000000</focusedcolor>
-                <label>$INFO[Window.Property(introSkipText)]</label>
+                <label>$ADDON[script.plex 32495]</label>
             </control>
         </control>
         <control type="group" id="801">
